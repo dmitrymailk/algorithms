@@ -65,27 +65,38 @@ abaabaababaab)";
     {
       // get prefix, sufix
       string prefix = line.substr(0, i);
-      string sufix = line.substr(i, line_size);
+      string sufix = line.substr(i, line_size - i);
       // print(prefix, sufix);
       // print("---------");
-      for (int len = 1; len < line_size; len++)
-      {
-        for (int amount = 0; amount < line_size - len; amount++)
-        {
-          string sub = line.substr(amount, len);
-          // print(amount, amount + len, sub);
-          int start = amount;
-          int end = amount + len;
+      // search prefix
+      int prefix_len = prefix.size();
+      int sufix_len = sufix.size();
 
-          if (sub == prefix || sub == sufix)
-          {
-            counter += 1;
-            // if (sub == prefix && sub == sufix)
-            // counter -= 1;
-          }
-        }
+      for (int pos = 0; pos < line_size - prefix_len; pos++)
+      {
+        string sub = line.substr(pos, prefix_len);
+        if (sub == prefix && sub != sufix)
+          counter += 1;
+      }
+
+      for (int pos = 0; pos < line_size - sufix_len; pos++)
+      {
+        string sub = line.substr(pos, sufix_len);
+        if (sub != prefix && sub == sufix)
+          counter += 1;
       }
     }
     print(counter);
   }
 }
+
+/*
+a bacaba 
+ab acaba 
+aba caba
+abac aba
+abaca ba
+abacab a
+
+
+*/
