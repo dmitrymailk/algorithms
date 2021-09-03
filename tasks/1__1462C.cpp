@@ -18,17 +18,29 @@ int main()
     int target_sum = stoi(item);
     if (target_sum <= max_sum)
     {
+      cout << "ok\n";
       int num_array[9];
       int pos = 8;
-      while (target_sum > 0)
+      int start_num = 9;
+      while (target_sum > 0 || start_num > 0)
       {
-        if (target_sum < 10)
+        if (target_sum < 10 && start_num < start_num)
         {
           num_array[pos] = target_sum;
           pos -= 1;
           target_sum = 0;
         }
+        else
+        {
+          target_sum -= start_num;
+          num_array[pos] = start_num;
+          pos -= 1;
+        }
       }
+
+      for (int i = 0; i < 9; i++)
+        cout << num_array[i];
+      cout << "\n";
     }
     else
       cout << "-1\n";
