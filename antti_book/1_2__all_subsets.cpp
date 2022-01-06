@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-
+#include <vector>
+#include <iostream>
 using namespace std;
 // {1, 2, 3} => {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3} и {1, 2, 3}
 
@@ -7,14 +7,13 @@ vector<int> subset;
 vector<int> test_array = {42, 5, 7};
 int n = 3;
 
-void all_subsets(int k)
+void all_subsets(int k = 0)
 {
-  if (k == n + 1)
+  if (k == n)
   {
     for (int item : subset)
-    {
-      cout << test_array[item - 1] << " ";
-    }
+      cout << test_array[item] << " ";
+
     cout << "\n";
   }
   else
@@ -28,5 +27,5 @@ void all_subsets(int k)
 
 int main()
 {
-  all_subsets(1);
+  all_subsets();
 }

@@ -1,1 +1,2 @@
-g++ -std=c++17 1__hello.cpp -o 1__hello && ./1__hello
+g++ -std=c++17 1_1__hello.cpp -o 1__hello && ./1_1__hello
+g++ -std=c++17 1_1__hello.cpp -o 1___hello
