@@ -5,7 +5,7 @@ using namespace std;
 
 vector<int> subset;
 vector<int> test_array = {42, 5, 7};
-int n = 3;
+int n = 2;
 
 void all_subsets(int k = 0)
 {
