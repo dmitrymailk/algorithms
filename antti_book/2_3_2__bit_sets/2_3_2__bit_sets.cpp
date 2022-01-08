@@ -1,5 +1,6 @@
-#include <bits\stdc++.h>
-
+#include <bitset>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 int main()
@@ -19,6 +20,14 @@ int main()
       cout << i << " ";
   }
   cout << "\n";
+
+  // логические операции над множествами
+  /*
+  a ∩ b = a & b
+  a ∪ b = a | b
+  a' = ~a
+  a \ b = a & (~b)
+  */
 
   x = (1 << 1) | (1 << 3) | (1 << 4) | (1 << 8);
   int y = (1 << 3) | (1 << 6) | (1 << 8) | (1 << 9);

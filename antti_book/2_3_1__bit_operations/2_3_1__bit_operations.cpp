@@ -62,5 +62,5 @@ int main()
   cout << __builtin_clz(x) << "\n";      // 19
   cout << __builtin_ctz(x) << "\n";      // 4
   cout << __builtin_popcount(x) << "\n"; // 5
-  cout << __builtin_parity(x) << "\n";   // 1 - подчеркивает, но мой компилятор выполняет эту команду
+  // cout << __builtin_parity(x) << "\n";   // 1 - подчеркивает, но мой компилятор выполняет эту команду
 }

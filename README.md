@@ -7,3 +7,6 @@
 - [official guide to setup GDB on vs code](https://code.visualstudio.com/docs/cpp/config-mingw)
 
 - [Using G++ to compile multiple .cpp and .h files](https://stackoverflow.com/questions/3202136/using-g-to-compile-multiple-cpp-and-h-files)
+
+- [vs code snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
+- [c++ snippets for vs code](https://github.com/one-harsh/vscode-cpp-snippets)
