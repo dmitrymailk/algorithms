@@ -44,6 +44,7 @@ public:
     {
       DoubleLinkedNode *new_item = new DoubleLinkedNode(data, head, head);
       head = new_item;
+      tail = new_item;
     }
     else
     {
@@ -63,6 +64,7 @@ public:
     else if (size == 1)
     {
       delete head;
+      delete tail;
     }
     else
     {
