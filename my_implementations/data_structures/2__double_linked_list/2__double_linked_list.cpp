@@ -10,8 +10,6 @@ public:
   int data;
   DoubleLinkedNode()
   {
-    next = nullptr;
-    prev = nullptr;
     data = 0;
   }
 
@@ -33,8 +31,6 @@ public:
   int size;
   DoubleLinkedList()
   {
-    head = new DoubleLinkedNode();
-    tail = new DoubleLinkedNode();
     size = 0;
   }
 
