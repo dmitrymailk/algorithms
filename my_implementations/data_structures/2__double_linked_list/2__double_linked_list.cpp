@@ -53,6 +53,26 @@ public:
     }
     size += 1;
   }
+
+  void DeleteItemHead()
+  {
+    if (size == 0)
+    {
+      return;
+    }
+    else if (size == 1)
+    {
+      delete head;
+    }
+    else
+    {
+      DoubleLinkedNode *temp = head->next;
+      delete head;
+      temp->prev = nullptr;
+      head = temp;
+      size -= 1;
+    }
+  }
 };
 
 int main()
@@ -61,4 +81,9 @@ int main()
   d_list->AddItem(10);
   d_list->AddItem(11);
   d_list->AddItem(12);
+  d_list->DeleteItemHead();
+  d_list->DeleteItemHead();
+  d_list->DeleteItemHead();
+  d_list->DeleteItemHead();
+  d_list->DeleteItemHead();
 }
