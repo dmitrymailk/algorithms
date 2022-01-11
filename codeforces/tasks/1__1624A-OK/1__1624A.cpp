@@ -1,9 +1,9 @@
+// task: https://codeforces.com/contest/1624/problem/A
 #include <iostream>
 #include <string>
 #include <vector>
 #include <cstdlib>
 using namespace std;
-// https://codeforces.com/contest/1624/problem/A
 
 void read_from_file()
 {
