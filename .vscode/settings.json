@@ -9,7 +9,10 @@
     "xlocale": "cpp",
     "xlocnum": "cpp",
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "iosfwd": "cpp",
+    "fstream": "cpp",
+    "xstring": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled"
 }
