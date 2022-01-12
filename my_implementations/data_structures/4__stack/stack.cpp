@@ -82,4 +82,9 @@ public:
   {
     return tail->data;
   }
+
+  int Size()
+  {
+    return size;
+  }
 };

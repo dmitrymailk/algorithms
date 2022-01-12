@@ -104,6 +104,5 @@ void delimeter_matcher(string _file_content)
 int main()
 {
   string file_content = read_file("./test_cpp_file");
-  // string file_content = "(){{()(){()()){[](){(){[]}{[]}}()[]}}}";
   delimeter_matcher(file_content);
 }
