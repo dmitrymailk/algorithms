@@ -28,7 +28,7 @@ string read_file(string filename)
   return file_content;
 }
 
-void delimeter_matcher(string file_content)
+void delimeter_matcher(string _file_content)
 {
   Stack<char> *open_brackets = new Stack<char>();
   bool status = true;
@@ -42,8 +42,10 @@ void delimeter_matcher(string file_content)
       {'}', 2},
   };
 
+  vector<char> file_content(_file_content.begin(), _file_content.end());
+
   int i = 0;
-  while (i < file_content.length())
+  while (i < file_content.size())
   {
     char temp_char = file_content[i];
     if (temp_char == '(' || temp_char == '[' || temp_char == '{')
@@ -70,13 +72,13 @@ void delimeter_matcher(string file_content)
         // или не достигнут конец файла выполнять поиск
         char test, test2;
         while (((int)(file_content[i] == '*') + (int)(file_content[i + 1] == '/')) != 2 &&
-               i < file_content.length())
+               i < file_content.size())
         {
           test = file_content[i];
           test2 = file_content[i + 1];
           i += 1;
         }
-        if (i >= file_content.length())
+        if (i >= file_content.size())
         {
           cout << "Error: comment block isn't closed"
                << "\n";
@@ -84,13 +86,12 @@ void delimeter_matcher(string file_content)
           break;
         }
         i += 1;
-        // continue;
       }
     }
     i += 1;
   }
 
-  if (status)
+  if (status && open_brackets->IsEmpty())
 
     cout << "Everything ok"
          << "\n";
@@ -102,6 +103,7 @@ void delimeter_matcher(string file_content)
 
 int main()
 {
-  string file_content = read_file("./test_cpp_file_2");
+  string file_content = read_file("./test_cpp_file");
+  // string file_content = "(){{()(){()()){[](){(){[]}{[]}}()[]}}}";
   delimeter_matcher(file_content);
 }
