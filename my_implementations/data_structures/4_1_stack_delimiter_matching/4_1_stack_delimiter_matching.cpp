@@ -29,15 +29,58 @@ string read_file(string filename)
 
 void delimeter_matcher(string file_content)
 {
-  Stack<string> *open_brackets = new Stack<string>();
+  Stack<char> *open_brackets = new Stack<char>();
+
+  // pair <char, bool, bool>
+
+  auto it = file_content.begin();
+  while (it != file_content.end())
+  {
+    char temp_char = *it;
+    if (temp_char == '(' || temp_char == '[' || temp_char == '{')
+    {
+      open_brackets->Push(temp_char);
+      it += 1;
+    }
+    else if (temp_char == ')' || temp_char == ']' || temp_char == '}')
+    {
+      char open_bracket = open_brackets->Pop();
+      if (open_bracket != temp_char)
+      {
+        cout << "Error, expected" << open_bracket << " Got: " << temp_char << "\n";
+      }
+      break;
+    }
+    else if (temp_char == '/')
+    {
+      char next_char = *(it + 1);
+      if (next_char == '*')
+      {
+        // пока не будет найдена строка */
+        // или не достигнут конец файла выполнять поиск
+        while (*it != '*' && *(it + 1) != '/' || it != file_content.end())
+        {
+          it += 1;
+        }
+        if (it == file_content.end())
+        {
+          cout << "Error: comment block isn't closed"
+               << "\n";
+          break;
+        }
+      }
+      else
+      {
+        it += 1;
+      }
+    }
+    else
+      it += 1;
+  }
 }
 
 int main()
 {
-  // string file_content = read_file("./test_cpp_file");
-  // cout << file_content << "\n";
-  Stack<string> *open_brackets = new Stack<string>();
-  open_brackets->Push("qweqwe");
-  open_brackets->Push("qweqwe123");
-  open_brackets->Push("qweqwe345");
+  string file_content = read_file("./test_cpp_file_2");
+  delimeter_matcher(file_content);
 }

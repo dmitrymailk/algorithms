@@ -65,7 +65,7 @@ public:
   }
 
   // удаляет элемент из стека
-  DoubleLinkedNode<NodeType> *Pop()
+  NodeType Pop()
   {
     DoubleLinkedNode<NodeType> *top_elem = tail;
     tail = tail->next;
@@ -74,12 +74,12 @@ public:
 
     size -= 1;
 
-    return top_elem;
+    return top_elem->data;
   }
 
   // просто отдает верхний элемет из стека
-  DoubleLinkedNode<NodeType> *TopElement()
+  NodeType TopElement()
   {
-    return tail;
+    return tail->data;
   }
 };
