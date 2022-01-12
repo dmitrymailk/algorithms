@@ -3,20 +3,21 @@
 #include <vector>
 using namespace std;
 
+template <class NodeType>
 class DoubleLinkedNode
 {
 public:
   DoubleLinkedNode *next;
   DoubleLinkedNode *prev;
-  int data;
+  NodeType data;
+
   DoubleLinkedNode()
   {
     next = nullptr;
     prev = nullptr;
-    data = 0;
   }
 
-  DoubleLinkedNode(int _data,
+  DoubleLinkedNode(NodeType _data,
                    DoubleLinkedNode *_next,
                    DoubleLinkedNode *_prev)
   {
@@ -26,16 +27,17 @@ public:
   }
 };
 
+template <class NodeType>
 class Stack
 {
 private:
-  DoubleLinkedNode *tail;
+  DoubleLinkedNode<NodeType> *tail;
   int size;
 
 public:
   Stack()
   {
-    tail = new DoubleLinkedNode();
+    tail = new DoubleLinkedNode<NodeType>();
     size = 0;
   }
 
@@ -53,9 +55,9 @@ public:
   }
 
   // добавляет новый элемент в стек
-  void Push(int _data)
+  void Push(NodeType _data)
   {
-    DoubleLinkedNode *new_node = new DoubleLinkedNode(_data, tail, nullptr);
+    DoubleLinkedNode<NodeType> *new_node = new DoubleLinkedNode<NodeType>(_data, tail, nullptr);
     tail->prev = new_node;
     tail = new_node;
 
@@ -63,9 +65,9 @@ public:
   }
 
   // удаляет элемент из стека
-  DoubleLinkedNode *Pop()
+  DoubleLinkedNode<NodeType> *Pop()
   {
-    DoubleLinkedNode *top_elem = tail;
+    DoubleLinkedNode<NodeType> *top_elem = tail;
     tail = tail->next;
     tail->prev = nullptr;
     top_elem->next = nullptr;
@@ -76,7 +78,7 @@ public:
   }
 
   // просто отдает верхний элемет из стека
-  DoubleLinkedNode *TopElement()
+  DoubleLinkedNode<NodeType> *TopElement()
   {
     return tail;
   }

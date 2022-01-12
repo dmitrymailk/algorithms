@@ -27,8 +27,17 @@ string read_file(string filename)
   return file_content;
 }
 
+void delimeter_matcher(string file_content)
+{
+  Stack<string> *open_brackets = new Stack<string>();
+}
+
 int main()
 {
-  string file_content = read_file("./test_cpp_file");
-  cout << file_content << "\n";
+  // string file_content = read_file("./test_cpp_file");
+  // cout << file_content << "\n";
+  Stack<string> *open_brackets = new Stack<string>();
+  open_brackets->Push("qweqwe");
+  open_brackets->Push("qweqwe123");
+  open_brackets->Push("qweqwe345");
 }
