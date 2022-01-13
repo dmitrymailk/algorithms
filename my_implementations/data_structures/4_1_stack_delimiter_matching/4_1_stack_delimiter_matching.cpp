@@ -27,7 +27,7 @@ string read_file(string filename)
 
   return file_content;
 }
-
+// Алгоритм для того чтобы узнать что все скобки корректно закрыты
 void delimeter_matcher(string _file_content)
 {
   Stack<char> *open_brackets = new Stack<char>();
@@ -70,14 +70,10 @@ void delimeter_matcher(string _file_content)
         i += 1;
         // пока не будет найдена строка */
         // или не достигнут конец файла выполнять поиск
-        char test, test2;
         while (((int)(file_content[i] == '*') + (int)(file_content[i + 1] == '/')) != 2 &&
                i < file_content.size())
-        {
-          test = file_content[i];
-          test2 = file_content[i + 1];
           i += 1;
-        }
+
         if (i >= file_content.size())
         {
           cout << "Error: comment block isn't closed"
