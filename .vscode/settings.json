@@ -13,7 +13,8 @@
     "iosfwd": "cpp",
     "fstream": "cpp",
     "xstring": "cpp",
-    "test_cpp_file": "cpp"
+    "test_cpp_file": "cpp",
+    "functional": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled"
 }
