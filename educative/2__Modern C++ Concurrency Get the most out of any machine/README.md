@@ -131,3 +131,117 @@ Tasks очень распространены при использовании 
 Tasks как каналы данных между двумя точками связи. Они могут включить thread-safe взаимодействие между threads, передавая между ними данные. Эти данные могут быть каким-то значением, exception или обычным уведомлением. Кроме **std::async** с++ имеет class templates **std::promise** и **std::future** которые дают больше контроля над task.
 
 ---
+
+## Examples
+
+1. Calculating the sum of a vector
+2. Thread-Safe Initialization of a Singleton
+3. Ongoing Optimization with CppMem
+
+## 1. Calculating the sum of a vector
+
+- tags #cpp_vector
+
+---
+
+Как можно быстрее всего вычислить сумму всех элементов в **std::vector**? Я заполню вектор числами, равномерно распределенными от 1 до 10, причем этих чисел будет сто миллионов. Задача состоит в том чтобы посчитать их сумму разными способами.
+
+### 1 Способ loop
+
+```cpp
+// calculateWithLoop.cpp
+
+#include <chrono>
+#include <iostream>
+#include <random>
+#include <vector>
+
+constexpr long long size = 100000000;
+
+int main()
+{
+    std::cout << std::endl;
+    std::vector<int> randValues;
+    randValues.reserve(size);
+
+    // random values
+    std::random_device seed;
+    std::mt19937 engine(seed());
+    std::uniform_int_distribution<> uniformDist(1, 10);
+    for (long long i = 0; i < size; ++i)
+        randValues.push_back(uniformDist(engine));
+
+    const auto sta = std::chrono::steady_clock::now();
+
+    unsigned long long sum = {};
+    for (auto n : randValues)
+        sum += n;
+
+    const std::chrono::duration<double> dur =
+        std::chrono::steady_clock::now() - sta;
+
+    std::cout << "Time for mySumition " << dur.count()
+              << " seconds" << std::endl;
+    std::cout << "Result: " << sum << std::endl;
+
+    std::cout << std::endl;
+}
+```
+
+```console
+Time for mySumition 0.809787 seconds
+Result: 550035865
+```
+
+Но выполнять такие простые операции как сложение над вектором через цикл некорректно, для этого есть встроенные функции из STL.
+
+### 2 Cпособ accumulate
+
+```cpp
+// calculateWithStd.cpp
+
+#include <chrono>
+#include <iostream>
+#include <random>
+#include <vector>
+
+constexpr long long size = 100000000;
+
+int main()
+{
+
+    std::cout << std::endl;
+
+    std::vector<int> randValues;
+    randValues.reserve(size);
+
+    // random values
+    std::random_device seed;
+    std::mt19937 engine(seed());
+    std::uniform_int_distribution<> uniformDist(1, 10);
+    for (long long i = 0; i < size; ++i)
+        randValues.push_back(uniformDist(engine));
+
+    const auto sta = std::chrono::steady_clock::now();
+
+    const unsigned long long sum = std::accumulate(randValues.begin(),
+                                                   randValues.end(), 0);
+    const std::chrono::duration<double> dur =
+        std::chrono::steady_clock::now() - sta;
+
+    std::cout << "Time for mySumition " << dur.count()
+              << " seconds" << std::endl;
+    std::cout << "Result: " << sum << std::endl;
+
+    std::cout << std::endl;
+}
+```
+
+```console
+Time for mySumition 0.73079 seconds
+Result: 550035865
+```
+
+На linux машинах не должно быть разницы между циклом и **std::accumulate**, но на windows машинах разница ощутима.
+
+---
