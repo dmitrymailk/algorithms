@@ -31,6 +31,6 @@ void iterativeEquivalentOfTail(int i)
 int main()
 {
     // tail(5);
-    // nonTail(5);
-    iterativeEquivalentOfTail(5);
+    nonTail(5);
+    // iterativeEquivalentOfTail(5);
 }
