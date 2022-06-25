@@ -1,0 +1,64 @@
+# UNSOLVED
+# https://codeforces.com/contest/1696/problem/B
+
+import sys
+
+"""
+mex(S) - как наименьшее неотрицательное целое число, которое не встречается в S;
+выбираем l, r  1<= l <= r <= n
+w = mex([a_l, ..., a_r])
+заменяем все элементы с l по r на w
+
+вселенная уничтожена, когда все a_i равны 0
+
+найти наименьшее количество действий для уничтожения вселенной
+если на всем промежутке есть единица, значит нам надо включить весь этот диапазон, он превратится в 0
+если все нули значит ничего делать не надо
+
+"""
+
+with open("./1696_B_data") as sys.stdin:
+    t = int(input())
+    for i in range(t):
+        n = input()
+        array = list(map(int, input().split()))
+        # print(array)
+        all_zeros = True
+        trials = 0
+
+        min_nums = {"pos": [], "value": []}
+        max_value = 10**9
+        min_value = int(max_value)
+        min_value_pos = -1
+        zeros_amount = 0
+        for j, num in enumerate(array):
+            if num != 0:
+                all_zeros = False
+
+            if num == 0:
+                zeros_amount += 1
+                if min_value_pos > -1 and min_value != max_value:
+                    min_nums["pos"].append(min_value_pos)
+                    min_nums["value"].append(min_value)
+
+                # min_nums["pos"].append(j)
+                # min_nums["value"].append(0)
+                min_value = int(max_value)
+                min_value_pos = -1
+            else:
+                if min_value > num:
+                    min_value = num
+                    min_value_pos = j
+
+            if j == len(array) - 1 and min_value_pos != -1:
+                min_nums["pos"].append(min_value_pos)
+                min_nums["value"].append(min_value)
+
+        if zeros_amount > 0:
+            trials = len(min_nums["value"])
+        if all_zeros:
+            print(0)
+        elif zeros_amount == 0:
+            print(1)
+        else:
+            print(trials)
